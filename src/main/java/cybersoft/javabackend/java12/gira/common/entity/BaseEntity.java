@@ -3,9 +3,11 @@ package cybersoft.javabackend.java12.gira.common.entity;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 @MappedSuperclass

@@ -40,5 +40,5 @@ public class RoleController {
 		}
 		Role addedRole = service.addNewRole(dto);
 		return ResponseHandler.getResponse(addedRole, HttpStatus.CREATED);
-	}	
+	}
 }

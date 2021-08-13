@@ -24,11 +24,20 @@ public class Role extends BaseEntity{
 	@Size(min = 3, max = 50)
 	@Column(unique = true)
 	private String name;
-	
 	private String description;
 	
 	@ManyToMany(mappedBy = "roles")
 	private Set<Group> groups = new HashSet<>();
+	
+	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "gira_role_program",
+			joinColumns = @JoinColumn(name = "role_id"),
+			inverseJoinColumns = @JoinColumn(name = "program_id")
+	)
+	private Set<Program> programs = new HashSet<>();
+	
+	
 	
 	public String getName() {
 		return name;
@@ -62,10 +71,4 @@ public class Role extends BaseEntity{
 		this.programs = programs;
 	}
 
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-	@JoinTable(name = "gira_role_program",
-			joinColumns = @JoinColumn(name = "role_id"),
-			inverseJoinColumns = @JoinColumn(name = "program_id")
-	)
-	private Set<Program> programs = new HashSet<>();
 }

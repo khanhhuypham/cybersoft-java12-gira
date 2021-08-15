@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import cybersoft.javabackend.java12.gira.role.dto.CreateProgramDto;
 import cybersoft.javabackend.java12.gira.role.dto.ProgramDto;
 import cybersoft.javabackend.java12.gira.role.entity.Program;
 import cybersoft.javabackend.java12.gira.role.repository.ProgramRepository;
@@ -17,19 +18,22 @@ public class ProgramServiceImpl implements ProgramService {
 	}
 	
 	@Override
-	public List<Program> findAll() {
+	public List<ProgramDto> findAll() {
 		// TODO Auto-generated method stub
-		return programRepository.findAll();
+		return programRepository.findAllDto();
 	}
-
+	
 	@Override
-	public Program addNewProgram(ProgramDto programDto) {
+	public Program saveProgram(CreateProgramDto createProgramDto) {
 		Program newProgram = new Program();
-		newProgram.setName(programDto.getName());
-		newProgram.setMethod(programDto.getMethod());
-		newProgram.setPath(programDto.getPath());
+		newProgram.setName(createProgramDto.getName());
+		newProgram.setMethod(createProgramDto.getMethod());
+		newProgram.setPath(createProgramDto.getPath());
 		return programRepository.save(newProgram);
 	}
+
+
+	
 
 	@Override
 	public Program findProgramById(int id) {
@@ -49,6 +53,8 @@ public class ProgramServiceImpl implements ProgramService {
 		programRepository.deleteById((long) id);
 		
 	}
+
+	
 	
 
 }

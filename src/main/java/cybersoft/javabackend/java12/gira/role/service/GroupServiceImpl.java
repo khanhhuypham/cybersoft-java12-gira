@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import cybersoft.javabackend.java12.gira.role.dto.CreateGroupDto;
 import cybersoft.javabackend.java12.gira.role.dto.GroupDto;
 import cybersoft.javabackend.java12.gira.role.entity.Group;
 import cybersoft.javabackend.java12.gira.role.repository.GroupRepository;
@@ -13,15 +14,15 @@ public class GroupServiceImpl implements GroupService {
 	private GroupRepository groupRepository;
 	
 	@Override
-	public List<Group> findAll() {
-		return groupRepository.findAll();
+	public List<GroupDto> findAll() {
+		return groupRepository.findAllDto();
 	}
 
 	@Override
-	public Group addNewProgram(GroupDto groupDto) {
+	public Group saveGroup(CreateGroupDto createGroupDto) {
 		Group newGroup = new Group();
-		newGroup.setName(groupDto.getName());
-		newGroup.setDescription(groupDto.getDescription());
+		newGroup.setName(createGroupDto.getName());
+		newGroup.setDescription(createGroupDto.getDescription());
 		return groupRepository.save(newGroup);
 	}
 
@@ -42,5 +43,7 @@ public class GroupServiceImpl implements GroupService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

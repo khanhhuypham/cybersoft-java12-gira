@@ -9,41 +9,37 @@ import cybersoft.javabackend.java12.gira.role.dto.GroupDto;
 import cybersoft.javabackend.java12.gira.role.entity.Group;
 import cybersoft.javabackend.java12.gira.role.repository.GroupRepository;
 
+
 @Service
 public class GroupServiceImpl implements GroupService {
-	private GroupRepository groupRepository;
+	private GroupRepository repository;
+
+	public GroupServiceImpl(GroupRepository groupRepository) {
+		repository = groupRepository;
+	}
 	
+	@Override
+	public boolean isTakenName(String groupName) {
+		return repository.countByName(groupName) >= 1;
+	}
+
 	@Override
 	public List<GroupDto> findAll() {
-		return groupRepository.findAllDto();
+		return repository.findAllDto();
 	}
 
 	@Override
-	public Group saveGroup(CreateGroupDto createGroupDto) {
-		Group newGroup = new Group();
-		newGroup.setName(createGroupDto.getName());
-		newGroup.setDescription(createGroupDto.getDescription());
-		return groupRepository.save(newGroup);
-	}
-
-	@Override
-	public Group findProgramById(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void update(Group group, int id) {
-		// TODO Auto-generated method stub
+	public Group add(CreateGroupDto dto) {
+		Group group = new Group();
+		group.setName(dto.getName());
+		group.setDescription(dto.getDescription());
 		
+		return repository.save(group);
 	}
 
 	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
+	public boolean isExisted(Long groupId) {
+		return repository.existsById(groupId);
 	}
-
-	
 
 }

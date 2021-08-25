@@ -20,28 +20,19 @@ import cybersoft.javabackend.java12.gira.role.util.HttpMethods;
 @Table(name = "gira_program")
 public class Program extends BaseEntity {
 	@NotNull
-	@Size(min = 1, max = 250, message = "{program.name.size}")
 	@Column(unique = true)
+	@Size(min = 3, max = 50, message = "{program.name.size}")
 	private String name;
 	
 	@NotNull
-	private HttpMethods method; //safe type
-	
+	private HttpMethods	method; // safe type
 	
 	@NotNull
 	private String path;
 	
 	@ManyToMany(mappedBy = "programs", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private Set<Role> roles = new HashSet<>();	
-	
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
+	private Set<Role> roles = new HashSet<>();
 
 	public String getName() {
 		return name;
@@ -67,5 +58,12 @@ public class Program extends BaseEntity {
 		this.path = path;
 	}
 
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 	
 }

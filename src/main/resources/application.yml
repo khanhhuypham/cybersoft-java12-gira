@@ -1,14 +1,13 @@
 spring:
-  datasource:    url: jdbc:postgresql://localhost:5432/gira
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gira
     username: postgres
     password: admin
-  jpa: 
+  jpa:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: create-drop
-    
-    
-    
-    
-    
+      ddl-auto: update
+  jackson:
+    serialization:
+      fail-on-empty-beans: false

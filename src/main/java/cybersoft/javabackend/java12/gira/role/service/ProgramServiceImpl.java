@@ -11,50 +11,31 @@ import cybersoft.javabackend.java12.gira.role.repository.ProgramRepository;
 
 @Service
 public class ProgramServiceImpl implements ProgramService {
-	private ProgramRepository programRepository;
+	private ProgramRepository repository;
 	
 	public ProgramServiceImpl(ProgramRepository programRepository) {
-		this.programRepository = programRepository;
+		repository = programRepository;
 	}
 	
 	@Override
 	public List<ProgramDto> findAll() {
-		// TODO Auto-generated method stub
-		return programRepository.findAllDto();
-	}
-	
-	@Override
-	public Program saveProgram(CreateProgramDto createProgramDto) {
-		Program newProgram = new Program();
-		newProgram.setName(createProgramDto.getName());
-		newProgram.setMethod(createProgramDto.getMethod());
-		newProgram.setPath(createProgramDto.getPath());
-		return programRepository.save(newProgram);
-	}
-
-
-	
-
-	@Override
-	public Program findProgramById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAllDto();
 	}
 
 	@Override
-	public void update(Program program, int id) {
-		// TODO Auto-generated method stub
+	public Program saveProgram(CreateProgramDto dto) {
+		Program program = new Program();
 		
+		program.setName(dto.getName());
+		program.setMethod(dto.getMethod());
+		program.setPath(dto.getPath());
+		
+		return repository.save(program);
 	}
 
 	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		programRepository.deleteById((long) id);
-		
+	public boolean isExistedId(Long programId) {
+		return repository.existsById(programId);
 	}
-
 	
-	
-
 }

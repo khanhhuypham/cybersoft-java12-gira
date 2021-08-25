@@ -3,29 +3,29 @@ package cybersoft.javabackend.java12.gira.common.entity;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
 import javax.persistence.Version;
 
 @MappedSuperclass
 public class BaseEntity {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false)
 	protected Long id;
 	
 	@Version
 	protected int version;
+	
 	protected String createdBy;
-	protected LocalDateTime createAt;
+	protected LocalDateTime createdAt;
 	protected String updatedBy;
-	protected LocalDateTime updateAt;
+	protected LocalDateTime updatedAt;
 	
 	
-	/*getters/setters*/
+	/* getters/setters */
 	public Long getId() {
 		return id;
 	}
@@ -44,11 +44,11 @@ public class BaseEntity {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-	public LocalDateTime getCreateAt() {
-		return createAt;
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
 	}
-	public void setCreateAt(LocalDateTime createAt) {
-		this.createAt = createAt;
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 	public String getUpdatedBy() {
 		return updatedBy;
@@ -56,16 +56,10 @@ public class BaseEntity {
 	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
-	public LocalDateTime getUpdateAt() {
-		return updateAt;
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
 	}
-	public void setUpdateAt(LocalDateTime updateAt) {
-		this.updateAt = updateAt;
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
-	
-	
-	
 }
-
-
-

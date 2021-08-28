@@ -15,31 +15,31 @@ public class ResponseHandler {
 		Map<String, Object> map = new HashMap<>();
 		map.put("content", content);
 		map.put("errors", "");
-		map.put("timetamp", LocalDateTime.now());
-		map.put("status",status.value());
+		map.put("timestamp", LocalDateTime.now());
+		map.put("status", status.value());
 		
 		return new ResponseEntity<Object>(map, status);
 	}
 	
-	public static ResponseEntity<Object> getResponse(HttpStatus status){
-		Map<String, Object> map = new HashMap<>();
-		map.put("content", "");
-		map.put("errors", "");
-		map.put("timetamp", LocalDateTime.now());
-		map.put("status",status.value());
-		
-		return new ResponseEntity<Object>(map, status);
-	}
-	
-
-	public static ResponseEntity<Object> getResponse(BindingResult errors,HttpStatus status){
+	public static ResponseEntity<Object> getResponse(BindingResult errors, HttpStatus status){
 		Map<String, Object> map = new HashMap<>();
 		map.put("content", "");
 		map.put("errors", ErrorUtils.getErrorMessages(errors));
-		map.put("timetamp", LocalDateTime.now());
-		map.put("status",status.value());
+		map.put("timestamp", LocalDateTime.now());
+		map.put("status", status.value());
+		
+		return new ResponseEntity<Object>(map, status);
+	}
+
+	public static Object getResponse(HttpStatus status) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("content", "");
+		map.put("errors", "");
+		map.put("timestamp", LocalDateTime.now());
+		map.put("status", status.value());
 		
 		return new ResponseEntity<Object>(map, status);
 	}
 	
+	// code coverage %
 }
